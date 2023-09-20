@@ -1,0 +1,29 @@
+From 664b65d293c948a725b9e215c13505539250ce10 Mon Sep 17 00:00:00 2001
+From: Lubomir Rintel <lkundrak@v3.sk>
+Date: Thu, 22 Aug 2019 17:37:56 +0200
+Subject: [PATCH] Move the NetworkManager dispatcher script out of /etc
+
+It's not user configuration and shouldn't ever have been there. Except for that
+it used to be the only location NetworkManager looked into. With NetworkManager
+1.20 that is no longer the case and the dispatcher scripts can be moved to
+/usr/lib.
+---
+ Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index b540bbe..625ccc7 100644
+--- a/Makefile
++++ b/Makefile
+@@ -6,7 +6,7 @@ TLP_BIN    ?= /usr/bin
+ TLP_TLIB   ?= /usr/share/tlp
+ TLP_FLIB   ?= /usr/share/tlp/func.d
+ TLP_ULIB   ?= /lib/udev
+-TLP_NMDSP  ?= /etc/NetworkManager/dispatcher.d
++TLP_NMDSP  ?= /usr/lib/NetworkManager/dispatcher.d
+ TLP_CONF   ?= /etc/default/tlp
+ TLP_SYSD   ?= /lib/systemd/system
+ TLP_SYSV   ?= /etc/init.d
+-- 
+2.23.0
+
